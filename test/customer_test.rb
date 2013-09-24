@@ -1,7 +1,7 @@
 gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/customer'
+require '../lib/customer'
 require 'time'
 
 class CustomerTest < Minitest::Test
@@ -32,6 +32,9 @@ class CustomerTest < Minitest::Test
   end
 
   def test_updated_at
-    attributes = {:updated_at => "2012-03-27 14:54:09 UTC"}
+    attributes = {:updated_at => "2012-03-27 14:54:59 UTC"}
+    customer = Customer.new(attributes)
+    assert_equal Time.utc(2012, 3, 27, 14, 54, 59), customer.updated_at
+  end
   
 end

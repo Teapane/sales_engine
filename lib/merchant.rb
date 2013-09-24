@@ -1,18 +1,20 @@
-class Customer
-
-  attr_reader :id,
-  :first_name,
-  :last_name
-  
+class Merchants
 
   def initialize(attributes)
     @id = attributes[:id].to_i
-    @first_name = attributes[:first_name]
-    @last_name = attributes[:last_name]
+    @name = attributes[:name]
     @created_time = attributes[:created_at]
     @updated_time = attributes[:updated_at]
   end
-  
+
+  def id
+    @id
+  end
+
+  def name
+    @name
+  end
+
   def created_at
     @created_at ||= Time.strptime(@created_time, "%Y-%m-%d %H:%M:%S %z")
   end
@@ -22,4 +24,3 @@ class Customer
   end
 
 end
-
