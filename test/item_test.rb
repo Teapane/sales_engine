@@ -52,4 +52,5 @@ def test_item_id
     assert_equal Time.utc(2012, 3, 27, 14, 53, 59), Item.updated_at
   end
 
+
 end
