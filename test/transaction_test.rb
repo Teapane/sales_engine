@@ -1,7 +1,7 @@
 gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
-require '../lib/transactions'
+require './lib/transaction'
 require 'time'
 
 class TransactionTest < Minitest::Test

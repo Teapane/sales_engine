@@ -19,13 +19,11 @@ class MerchantRepository
   end 
 
   def find_id(merchant_id)
-        all.select { |merchant| merchant.id == merchant_id }
-
+    all.detect { |merchant| merchant.id == merchant_id }
   end
 
-  
   def id
-  @id = attributes[:id].to_i
+    @id = attributes[:id].to_i
   end
 
   

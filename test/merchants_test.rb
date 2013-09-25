@@ -1,7 +1,7 @@
 gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
-require '../lib/merchants'
+require './lib/merchants'
 require 'time'
 
 

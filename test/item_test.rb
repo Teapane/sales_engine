@@ -1,7 +1,7 @@
 gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
-require '../lib/item'
+require './lib/item'
 require 'time'
 
 class ItemTest < Minitest::Test
@@ -16,45 +16,33 @@ def test_item_id
   end
 
   def test_item_name
-<<<<<<< HEAD
-    
-=======
     #skip
->>>>>>> 2a01bbaccb4f7bbea90fffdc9748fd64d1ee8b85
     attributes = {:name => "Qui Esse"}
     item = Item.new(attributes)
     assert_equal "Qui Esse", item.name
   end
 
   def test_description
-<<<<<<< HEAD
-=======
     #skip
->>>>>>> 2a01bbaccb4f7bbea90fffdc9748fd64d1ee8b85
     attributes = {:description => "Nihil autem"}
     item = Item.new(attributes)
     assert_equal "Nihil autem", item.description
   end
 
   def test_unit_price
-<<<<<<< HEAD
-=======
     #skip
->>>>>>> 2a01bbaccb4f7bbea90fffdc9748fd64d1ee8b85
     attributes = {:unit_price => "75107"}
     item = Item.new(attributes)
     assert_equal "75107", item.unit_price
     end
 
    def test_merchant_id
-<<<<<<< HEAD
     attributes = {:id => "1"}
     item = Item.new(attributes)
     assert_equal 1, item.id
   end
 
   def test_created_at
-=======
     #skip
     attributes = {:merchant_id => "1"}
     item = Item.new(attributes)
@@ -63,24 +51,15 @@ def test_item_id
 
   def test_created_at
     #skip
->>>>>>> 2a01bbaccb4f7bbea90fffdc9748fd64d1ee8b85
     attributes = {:created_at => "2012-03-27 14:53:59 UTC"}
     item = Item.new(attributes)
     assert_equal Time.utc(2012, 3, 27, 14, 53, 59), item.created_at
   end
 
   def test_updated_at
-<<<<<<< HEAD
-    attributes = {:updated_at => "2012-03-27 14:53:59 UTC"}
-    item = Item.new(attributes)
-    assert_equal Time.utc(2012, 3, 27, 14, 53, 59), Item.updated_at
-=======
     #skip
     attributes = {:updated_at => "2012-03-27 14:53:59 UTC"}
     item = Item.new(attributes)
     assert_equal Time.utc(2012, 3, 27, 14, 53, 59), item.updated_at
->>>>>>> 2a01bbaccb4f7bbea90fffdc9748fd64d1ee8b85
   end
-
-
 end

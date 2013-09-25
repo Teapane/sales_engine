@@ -1,7 +1,7 @@
 gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
-require '../lib/invoice_item'
+require './lib/invoice_item'
 require 'time'
 
 class InvoiceItemTest < Minitest::Test

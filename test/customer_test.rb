@@ -1,7 +1,7 @@
 gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
-require '../lib/customer'
+require './lib/customer'
 require 'time'
 
 class CustomerTest < Minitest::Test
