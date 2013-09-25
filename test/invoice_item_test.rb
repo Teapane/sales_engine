@@ -45,5 +45,6 @@ def test_id
     assert_equal Time.utc(2012, 3, 25, 9, 54, 9), invoice.updated_at
   end
 
+
 end
 

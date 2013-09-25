@@ -1,3 +1,4 @@
+=begin
  attr_reader :id,
   :first_name,
   :last_name,

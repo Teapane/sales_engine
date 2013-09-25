@@ -1,17 +1,18 @@
-class InvoiceItem
-attr_reader :id,
-  :item_id,
-  :invoice_id,
-  :quantity
-  :unit_price
+class Merchants
 
   def initialize(attributes)
     @id = attributes[:id].to_i
-    @item_id = attributes[:item_id].to_i
-    @invoice_id = attributes[:invoice_id].to_i
-    @quantity = attributes[:quantity]
+    @name = attributes[:name]
     @created_time = attributes[:created_at]
     @updated_time = attributes[:updated_at]
+  end
+
+  def id
+    @id
+  end
+
+  def name
+    @name
   end
 
   def created_at
@@ -21,6 +22,5 @@ attr_reader :id,
   def updated_at
     @updated_at ||= Time.strptime(@updated_time, "%Y-%m-%d %H:%M:%S %z")
   end
-  
-end
 
+end
