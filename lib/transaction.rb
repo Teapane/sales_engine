@@ -3,7 +3,7 @@ class Transaction
  def initialize(attributes)
   @id = attributes[:id].to_i
   @invoice_id = attributes[:invoice_id].to_i
-  @CCN = attributes [:credit_card_number].to_i
+  @credit_card_number = attributes [:credit_card_number].to_i
   @expiration = attributes[:credit_card_expiration]
   @result = attributes[:result]
   @created_time = attributes[:created_at]
@@ -19,7 +19,7 @@ class Transaction
  end
 
  def credit_card_number
-  @CCN
+  @credit_card_number
  end
 
  def credit_card_expiration
