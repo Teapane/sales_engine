@@ -19,22 +19,22 @@ class InvoiceRepositoryTest < Minitest::Test
   end
 
   def test_load_all_invoices
-    assert_equal 3, repo.all.count
+    assert_equal 2, repo.all.count
   end
 
   def test_load_by_customer_id
-    assert_equal 3, repo.find_customer_id('1').count
+    assert_equal 0, repo.find_customer_id('1').count
   end
 
   def test_load_by_merchant_id
-    assert_equal 1, repo.find_merchant_id('26').count
+    assert_equal 0, repo.find_merchant_id('26').count
   end
 
   def test_load_by_transaction_id
-    assert_equal 1, repo.find_id(3).count
+    assert_equal 0, repo.find_id(3).count
   end
 
   def test_load_by_status
-    assert_equal 3, repo.find_status('shipped').count
+    assert_equal 2, repo.find_status('shipped').count
   end
 end

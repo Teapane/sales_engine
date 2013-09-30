@@ -20,9 +20,9 @@ class TransactionRepository
     all.detect { |number| number.id == invoice_id}
   end
 
-  #def find_credit_card_number(ccn)
-    #all.detect { |credit_number| credit_number.credit_card_number == ccn.to_i}
-  #end
+  def find_card_number(cardnumber)
+      all.select { |transaction| transaction.credit_card_number == cardnumber}
+  end
 
   def find_results(results)
     all.detect { |result| result.results == results }

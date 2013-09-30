@@ -14,7 +14,7 @@ class MerchantRepository
     all.sample
   end
 
- def find_name(merchant_name)
+  def find_name(merchant_name)
     all.select { |merchant| merchant.name.downcase == merchant_name.downcase }
   end 
 
