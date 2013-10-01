@@ -1,34 +1,61 @@
+gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
-require 'csv'
-require 'time'
 require './lib/transaction'
 require './lib/transaction_repository'
+require './lib/sales_engine'
 
 class TransactionRepositoryTest < Minitest::Test
 
-  def repo
-    @repo ||= TransactionRepository.new("./test/fixtures/transactions.csv")
+attr_reader :repo
+
+ def repo
+    engine = SalesEngine.new
+    @repo ||= engine.transaction_repository
   end
 
-  def def test_csv_filename
-    assert_equal "./test/fixtures/transactions.csv", repo.filename
+  def test_csv_filename
+    assert_equal "./data/transactions.csv", repo.filename
   end
 
-  def test_id
-    assert_equal 1, repo.find_id(1).id
+  def test_load_all_transactions
+    assert_equal 5595, repo.all.count
   end
 
-  def test_invoice_id
-    assert_equal 1, repo.find_invoice_id(1).id
+  #####################
+
+  def test_load_by_id
+    assert_equal 1, repo.find_by_id(1).id
   end
 
-  #def test_credit_card_number
-    #assert_equal 1, repo.find_credit_card_number(4654405418249632).count
-  #end
+  def test_load_by_invoice_id
+    assert_equal 4, repo.find_by_invoice_id(4).invoice_id
+  end
 
-  #def test_for_result
-    #assert_equal success, repo.find_result("success")
-  #end
+  def test_load_by_credit_card_number
+    assert_equal 4654405418249632, repo.find_by_card_number(4654405418249632).credit_card_number
+  end
+    
+  def test_load_by_result
+    assert_equal "success", repo.find_by_result("success").result
+  end
+
+  ########################
+
+  def test_load_all_by_id
+    assert_equal 1, repo.find_all_by_id(1).count
+  end
+
+  def test_load_all_by_invoice_id
+    assert_equal 1, repo.find_all_by_invoice_id(4).count
+  end
+
+  def test_load_all_by_credit_card_number
+    assert_equal 1, repo.find_all_by_card_number(4654405418249632).count
+  end
+    
+  def test_load_all_by_result
+    assert_equal 4648, repo.find_all_by_result("success").count
+  end
 
 end

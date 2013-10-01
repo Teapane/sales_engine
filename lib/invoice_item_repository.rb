@@ -1,45 +1,67 @@
 require 'csv'
 
-class InvoiceRepository
-  attr_reader :filename
+class InvoiceItemRepository
+  attr_reader :filename,
+  :engine
 
-  def initialize(filename)
+   def initialize(filename, engine)
     @filename = filename
+    @engine = engine
   end
 
   def all
-    @all ||= build_invoice
+    @all ||= invoice_items
   end
 
   def random
     all.sample
   end
 
-  def find_customer_id(customer_id)
-    all.select { |invoice| invoice.customer_id == customer_id }
+  def find_all_by_id(id)
+    all.select { |invoiceitem| invoiceitem.id.to_i == id.to_i }
   end 
 
-  def find_merchant_id(merchant_id)
-    all.select { |invoice| invoice.merchant_id == merchant_id }
+  def find_by_id(id)
+    all.find { |invoiceitem| invoiceitem.id.to_i == id.to_i }
   end
 
-  def find_id(transaction_id)
-    all.select { |invoice| invoice.id == transaction_id }
+  def find_all_by_item_id(item_id)
+        all.select { |item| item.item_id.to_i == item_id.to_i }
   end
 
-  def find_status(shipping_status)
-    all.select { |invoice| invoice.status == shipping_status }
+  def find_all_by_invoice_id(invoice_id)
+      all.select { |invoice| invoice.invoice_id.to_i == invoice_id.to_i}
   end
 
-    private
+  def find_by_invoice_id(invoice_id)
+      all.find { |invoice| invoice.invoice_id.to_i == invoice_id.to_i}
+  end
 
-    def build_invoice
-      data.map do |row|
-        Invoice.new(row)
-      end
+  def find_all_by_item_quantity(quantity)
+      all.select { |invoice| invoice.quantity == quantity}
+  end
+
+   def find_by_item_quantity(quantity)
+      all.find { |invoice| invoice.quantity == quantity}
+  end
+
+  def find_all_by_unit_price(unit_price)
+    all.select { |invoice| invoice.unit_price == price}
+  end
+
+  def find_by_unit_price(unit_price)
+    all.find { |invoice| invoice.unit_price == price}
+  end
+  
+  private
+
+  def invoice_items
+    data.map do |row|
+      InvoiceItem.new(row)
     end
-
-    def data
-      @data ||= CSV.open(filename, headers: true, header_converters: :symbol)
-    end
   end
+
+  def data
+    @data ||= CSV.open(filename, headers: true, header_converters: :symbol)
+  end
+end

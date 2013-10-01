@@ -1,10 +1,12 @@
 require 'csv'
 
 class ItemRepository
-  attr_reader :filename
+  attr_reader :filename,
+  :engine
 
-  def initialize(filename)
+  def initialize(filename, engine)
     @filename = filename
+    @engine = engine
   end
 
   def all
@@ -15,24 +17,44 @@ class ItemRepository
     all.sample
   end
 
-  def find_id(id)
+  def find_by_id(id)
+    all.find { |item| item.id.to_int == id.to_int }
+  end
+
+  def find_by_name(name)
+    all.find { |item| item.name == name}
+  end
+
+  def find_by_description(description)
+    all.find { |item| item.description == description}
+  end
+
+  def find_by_unit_price(price)
+    all.find { |item| item.unit_price == price}
+  end
+
+  def find_by_merchant_id(merchant)
+    all.find { |item| item.merchant_id == merchant}
+  end
+  
+  def find_all_by_id(id)
     all.select { |item| item.id.to_int == id.to_int }
   end 
 
-  def find_name(name)
-        all.select { |item| item.name == name }
+  def find_all_by_name(name)
+    all.select { |item| item.name == name }
   end
 
-  def find_description(description)
-      all.select { |item| item.description == description}
+  def find_all_by_description(description)
+    all.select { |item| item.description == description}
   end
 
-  def find_unit_price(price)
+  def find_all_by_unit_price(price)
     all.select { |item| item.unit_price == price}
   end
   
-  def find_merchant_id(merch)
-      all.select { |merchid| merchid.merchant_id == merch}
+  def find_all_by_merchant_id(merchant)
+    all.select { |merchid| merchid.merchant_id == merchant}
   end
 
   private

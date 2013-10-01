@@ -1,9 +1,13 @@
 class MerchantRepository
 
-  attr_reader :filename
+  attr_reader :filename,
+  :engine
 
-  def initialize(filename)
+ 
+
+  def initialize(filename, engine)
     @filename = filename
+    @engine = engine
   end
 
   def all
@@ -14,19 +18,38 @@ class MerchantRepository
     all.sample
   end
 
-  def find_name(merchant_name)
+  def find_all_by_name(merchant_name)
     all.select { |merchant| merchant.name.downcase == merchant_name.downcase }
   end 
 
-  def find_id(merchant_id)
-    all.detect { |merchant| merchant.id == merchant_id }
+  def find_by_name(merchant_name)
+    all.find { |merchant| merchant.name.downcase == merchant_name.downcase }
+  end 
+
+  def find_all_by_id(merchant_id)
+    all.select { |merchant| merchant.id.to_i == merchant_id.to_i }
   end
 
-  def id
-    @id = attributes[:id].to_i
+  def find_by_id(merchant_id)
+    all.find { |merchant| merchant.id.to_i == merchant_id.to_i }
   end
 
-  
+   def find_by_id(customer_id)
+      all.find { |customer| customer.id.to_i == customer_id.to_i }
+    end
+
+    def find_all_by_id(customer_id)
+      all.find { |customer| customer.id.to_i == customer_id.to_i }
+    end
+
+  #def find_items_by_merchant_id(id)
+   # sales_engine.item_repository.find_all_by_merchant_id
+  #end
+
+  #def add(merchant)
+    #merchant.merchant_repository = self
+    #@merchants << merchant
+  #end
 
   
 

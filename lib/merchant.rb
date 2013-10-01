@@ -1,5 +1,3 @@
-
-
 class Merchant 
   def initialize(attributes)
     @id = attributes[:id].to_i

@@ -1,50 +1,64 @@
 
+require 'csv'
+
 class TransactionRepository
+  attr_reader :filename, 
+  :engine
 
-  attr_reader :filename
-
-  def initialize(filename)
+  def initialize(filename, engine)
     @filename = filename
+    @engine = engine
   end
-
 
   def all
-    @all ||=build_transaction
+    @all ||= build_transactions
   end
 
-  def find_id(id)
-    all.detect { |number| number.id == id }
-    end
-
-  def find_invoice_id(invoice_id)
-    all.detect { |number| number.id == invoice_id}
+  def random
+    all.sample
   end
 
-  def find_card_number(cardnumber)
+  def find_by_id(id)
+    all.find {|transaction| transaction.id == id }
+  end
+
+  def find_by_invoice_id(invoice_id)
+    all.find {|transaction| transaction.invoice_id == invoice_id }
+  end
+
+  def find_by_card_number(cardnumber)
+    all.find {|transaction| transaction.credit_card_number == cardnumber }
+  end
+
+  def find_by_result(result)
+    all.find {|transaction| transaction.result == result}
+  end
+
+  def find_all_by_id(id)
+    all.select { |transaction| transaction.id == id }
+  end 
+
+  def find_all_by_invoice_id(invoice_id)
+        all.select { |transaction| transaction.invoice_id == invoice_id }
+  end
+
+  def find_all_by_card_number(cardnumber)
       all.select { |transaction| transaction.credit_card_number == cardnumber}
   end
 
-  def find_results(results)
-    all.detect { |result| result.results == results }
+  def find_all_by_result(result)
+    all.select { |transaction| transaction.result == result}
+  end
  
-end
+  private
 
-
-
-private
-
-    def build_transaction
-      data.map do |row|
-        Transaction.new(row)
-      end
+  def build_transactions
+    data.map do |row|
+      Transaction.new(row)
     end
-
-    def data  
-      @data ||=CSV.open(filename, headers: true, header_converters: :symbol)
-    end
-
   end
 
-
-
-
+  def data
+    @data ||= CSV.open(filename, headers: true, header_converters: :symbol)
+  end
+end
