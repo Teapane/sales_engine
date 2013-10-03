@@ -1,13 +1,18 @@
+require './lib/transaction_repository'
 class Transaction
 
- def initialize(attributes)
-  @id = attributes[:id].to_i
-  @invoice_id = attributes[:invoice_id].to_i
-  @credit_card_number = attributes [:credit_card_number].to_i
+  attr_reader :engine
+
+
+ def initialize(attributes, engine = SalesEngine.new)
+  @id = attributes[:id]
+  @invoice_id = attributes[:invoice_id]
+  @credit_card_number = attributes [:credit_card_number]
   @expiration = attributes[:credit_card_expiration]
   @result = attributes[:result]
   @created_time = attributes[:created_at]
   @updated_time = attributes[:updated_at]
+  @engine = engine
  end
 
  def id
@@ -41,5 +46,11 @@ class Transaction
   def updated_at
     @updated_at ||= Time.strptime(@updated_time, "%Y-%m-%d %H:%M:%S %z")
   end
+
+  def invoice
+    engine.invoice_repository.find_all_by_id(self.invoice_id)
+  end
+  
+
 
 end

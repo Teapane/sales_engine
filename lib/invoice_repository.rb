@@ -4,7 +4,7 @@ class InvoiceRepository
   attr_reader :filename,
   :engine
 
-  def initialize(filename, engine)
+  def initialize(filename = "./data/invoices.csv", engine)
     @filename = filename
     @engine = engine
   end
@@ -39,22 +39,21 @@ class InvoiceRepository
 
    def find_by_transaction_id(transaction_id)
     all.find { |invoice| invoice.id.to_i == transaction_id.to_i }
-  end
+   end
 
-  def find_status(shipping_status)
-    all.select { |invoice| invoice.status == shipping_status }
-  end
+   def find_by_status(shipping_status)
+    all.find { |invoice| invoice.status == shipping_status }
+   end
 
-  def -
-  end
+ 
     
-  end
+
 
     private
 
     def build_invoice
       data.map do |row|
-        Invoice.new(row)
+        Invoice.new(row, engine)
       end
     end
 

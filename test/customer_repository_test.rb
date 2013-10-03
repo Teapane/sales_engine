@@ -18,7 +18,7 @@ class CustomerRepositoryTest < Minitest::Test
   end
 
   def test_find_by_id
-    assert_equal 1, repo.find_by_id(1).id
+    assert_equal "1", repo.find_by_id("1").id
   end
 
   def test_find_all_by_first_name 

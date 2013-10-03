@@ -49,12 +49,14 @@ class TransactionRepository
   def find_all_by_result(result)
     all.select { |transaction| transaction.result == result}
   end
+
+  
  
   private
 
   def build_transactions
     data.map do |row|
-      Transaction.new(row)
+      Transaction.new(row, engine)
     end
   end
 

@@ -30,7 +30,7 @@ class MerchantRepositoryTest < Minitest::Test
   end
 
   def test_find_by_id
-    assert_equal 1, repo.find_by_id(1).id
+    assert_equal "1", repo.find_by_id(1).id
   end
 
 def test_random_merchant

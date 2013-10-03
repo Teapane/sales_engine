@@ -18,7 +18,7 @@ class ItemRepository
   end
 
   def find_by_id(id)
-    all.find { |item| item.id.to_int == id.to_int }
+    all.find { |item| item.id.to_i == id.to_i }
   end
 
   def find_by_name(name)
@@ -38,7 +38,7 @@ class ItemRepository
   end
   
   def find_all_by_id(id)
-    all.select { |item| item.id.to_int == id.to_int }
+    all.select { |item| item.id.to_i == id.to_i }
   end 
 
   def find_all_by_name(name)
@@ -54,14 +54,14 @@ class ItemRepository
   end
   
   def find_all_by_merchant_id(merchant)
-    all.select { |merchid| merchid.merchant_id == merchant}
+    all.select { |merchid| merchid.merchant_id.to_i == merchant}
   end
 
   private
 
   def build_items
     data.map do |row|
-      Item.new(row)
+      Item.new(row, engine)
     end
   end
 

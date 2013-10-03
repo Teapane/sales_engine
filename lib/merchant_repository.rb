@@ -57,7 +57,7 @@ class MerchantRepository
 
   def build_merchant
     data.map do |row|
-      Merchant.new(row)
+      Merchant.new(row, engine)
     end
   end
 

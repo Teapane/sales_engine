@@ -1,11 +1,10 @@
-gem 'minitest'
-#require 'csv'
+require 'csv'
 require 'minitest/autorun'
 require 'minitest/pride'
-#require 'time'
-#require './lib/item_repository'
-#require './lib/item'
-#require './lib/sales_engine'
+require 'time'
+require './lib/item_repository'
+require './lib/item'
+require './lib/sales_engine'
 
 class ItemRepositoryTest < Minitest::Test
   attr_reader :repo
@@ -24,23 +23,23 @@ class ItemRepositoryTest < Minitest::Test
   end
 
   def test_find_by_id
-    assert_equal 1, repo.find_by_id(1).id
+    assert_equal "1", repo.find_by_id(1).id
   end
 
 
   def test_it_has_description
     skip
-    assert_equal 1, repo.find_description("Nihil autem sit odio inventore deleniti. Est laudantium ratione distinctio laborum. Minus voluptatem nesciunt assumenda dicta voluptatum porro.").count 
+    assert_equal 1, repo.find_by_description("Nihil autem sit odio inventore deleniti. Est laudantium ratione distinctio laborum. Minus voluptatem nesciunt assumenda dicta voluptatum porro.") 
   end
     
   def test_find_by_unit_price
     skip
-    assert_equal 0, repo.find_by_unit_price("0")
+    assert_equal "0", repo.find_by_unit_price("0")
   end
 
-  def test_load_by_merchant_id
+  def test_find_by_merchant_id
     skip
-    assert_equal 1, repo.find_merchant_id(1).count
+    assert_equal 1, repo.find_by_merchant_id("1")
   end
 
 end

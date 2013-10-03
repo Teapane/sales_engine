@@ -4,7 +4,7 @@ class InvoiceItemRepository
   attr_reader :filename,
   :engine
 
-   def initialize(filename, engine)
+   def initialize(filename, engine = SalesEngine.new)
     @filename = filename
     @engine = engine
   end
@@ -18,23 +18,23 @@ class InvoiceItemRepository
   end
 
   def find_all_by_id(id)
-    all.select { |invoiceitem| invoiceitem.id.to_i == id.to_i }
+    all.select { |invoiceitem| invoiceitem == id }
   end 
 
   def find_by_id(id)
-    all.find { |invoiceitem| invoiceitem.id.to_i == id.to_i }
+    all.find { |invoiceitem| invoiceitem == id }
   end
 
   def find_all_by_item_id(item_id)
-        all.select { |item| item.item_id.to_i == item_id.to_i }
+        all.select { |item| item.item_id == item_id }
   end
 
   def find_all_by_invoice_id(invoice_id)
-      all.select { |invoice| invoice.invoice_id.to_i == invoice_id.to_i}
+      all.select { |invoice_item| invoice_item.invoice_id == invoice_id}
   end
 
   def find_by_invoice_id(invoice_id)
-      all.find { |invoice| invoice.invoice_id.to_i == invoice_id.to_i}
+      all.find { |invoice_item| invoice_item.invoice_id == invoice_id}
   end
 
   def find_all_by_item_quantity(quantity)
@@ -57,7 +57,7 @@ class InvoiceItemRepository
 
   def invoice_items
     data.map do |row|
-      InvoiceItem.new(row)
+      InvoiceItem.new(row, engine)
     end
   end
 
