@@ -1,4 +1,3 @@
-
 ============
 ###The basic breakdown###
   Billy's Picks compiles a score for you based on your [**GitHub**](http://github.com) Commits and Public Repos, as well as your stats from [***exercism.io***](http://exercism.io), mainly your submissions, what languages you have completed exercises in, and nitpicks you have done.  
@@ -23,7 +22,7 @@
     end
     values
   end
-  ```
+```
 
   ###The following methods are used to multiply a score that is passed into total###
 
